@@ -38,7 +38,7 @@ variable "github_personal_token" {
   }
 }
 
-variable "gitlab_personal_token" {
+/*variable "gitlab_personal_token" {
   type        = string
   description = "The gitlab.com personal token"
   validation {
@@ -55,7 +55,7 @@ variable "snyk_hmac_key" {
 variable "infracost_hmac_key" {
   type        = string
   description = "HMAC key for infracost.io integration."
-}
+}*/
 
 
 

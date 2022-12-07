@@ -96,7 +96,7 @@ resource "tfe_oauth_client" "github-b" {
   service_provider = "github"
 }
 
-resource "tfe_oauth_client" "gitlab-a" {
+/*resource "tfe_oauth_client" "gitlab-a" {
   organization     = var.organization
   api_url          = "https://gitlab.com/api/v4"
   http_url         = "https://gitlab.com"
@@ -110,7 +110,7 @@ resource "tfe_oauth_client" "gitlab-b" {
   http_url         = "https://gitlab.com"
   oauth_token      = var.gitlab_personal_token
   service_provider = "gitlab_hosted"
-}
+}*/
 
 resource "tfe_workspace" "tfc-credential-injector" {
   allow_destroy_plan    = true
@@ -262,7 +262,7 @@ resource "tfe_variable" "azure_client_secret" {
   description     = "Azure Client Secret"
 }
 
-resource "tfe_organization_run_task" "snyk" {
+/*resource "tfe_organization_run_task" "snyk" {
   organization = var.organization
   url          = "https://api.snyk.io/v1/terraform-cloud/2df223b0-f339-4303-99ce-955159121971"
   hmac_key     = var.snyk_hmac_key
@@ -276,14 +276,14 @@ resource "tfe_organization_run_task" "infracost" {
   hmac_key     = var.infracost_hmac_key
   name         = "infracost"
   enabled      = true
-}
+}*/
 
 data "tfe_workspace_ids" "customerfacing" {
   tag_names    = ["customerfacing"]
   organization = var.organization
 }
 
-resource "tfe_workspace_run_task" "snyk" {
+/*resource "tfe_workspace_run_task" "snyk" {
   for_each          = data.tfe_workspace_ids.customerfacing.ids
   workspace_id      = each.value
   task_id           = resource.tfe_organization_run_task.snyk.id
@@ -295,4 +295,4 @@ resource "tfe_workspace_run_task" "infracost" {
   workspace_id      = each.value
   task_id           = resource.tfe_organization_run_task.infracost.id
   enforcement_level = "advisory"
-}
+}*/
